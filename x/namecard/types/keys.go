@@ -17,6 +17,12 @@ const (
 	MemStoreKey = "mem_namecard"
 )
 
+var (
+	KeyNameCard = []byte{0x01}
+	// KeyIndexSeparator defines separator between keys when combine, it should be one that is not used in denom expression
+	KeyIndexSeparator = []byte{0xFF}
+)
+
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }

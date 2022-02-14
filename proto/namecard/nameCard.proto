@@ -1,0 +1,27 @@
+syntax = "proto3";
+package mattverse.cardhaus.namecard;
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/mattverse/cardhaus/x/namecard/types";
+
+message History {
+   google.protobuf.Timestamp sent_time = 1 [
+    (gogoproto.stdtime) = true,
+    (gogoproto.nullable) = false,
+    (gogoproto.moretags) = "yaml:\"sent_time\""
+  ];
+  string address = 2;
+}
+
+message NameCard {
+  string address = 1;
+  string name = 2;
+  string imageUrl = 3;
+  string selfIntro = 4;
+  repeated History sent_info = 5;
+  repeated History received_info = 6;
+}

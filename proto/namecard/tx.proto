@@ -1,13 +1,28 @@
 syntax = "proto3";
 package mattverse.cardhaus.namecard;
 
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "github.com/mattverse/cardhaus/x/namecard/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc CreateNamecard(MsgCreateNamecard) returns (MsgCreateNamecardResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+
+message MsgCreateNamecard {
+  string address = 1;
+  string name = 2;
+  string imageUrl = 3;
+  string selfIntro = 4;
+}
+
+message MsgCreateNamecardResponse {
 }
 
 // this line is used by starport scaffolding # proto/tx/message

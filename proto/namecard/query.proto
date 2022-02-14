@@ -5,6 +5,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "namecard/params.proto";
+import "namecard/nameCard.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/mattverse/cardhaus/x/namecard/types";
@@ -15,7 +16,12 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/mattverse/cardhaus/namecard/params";
   }
-  // this line is used by starport scaffolding # 2
+  // Queries a list of CardInfo items.
+	rpc CardInfo(QueryCardInfoRequest) returns (QueryCardInfoResponse) {
+		option (google.api.http).get = "/mattverse/cardhaus/namecard/card_info";
+	}
+
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -25,6 +31,14 @@ message QueryParamsRequest {}
 message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryCardInfoRequest {
+  string address = 1;
+}
+
+message QueryCardInfoResponse {
+  NameCard nameCard = 1;
 }
 
 // this line is used by starport scaffolding # 3
